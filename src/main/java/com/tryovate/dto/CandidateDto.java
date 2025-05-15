@@ -114,7 +114,12 @@ public class CandidateDto {
     private String paymentType; // FULL or PARTIAL
 
     @NotBlank(message = "Payment mode is required")
-    private String paymentMode; // ONLINE or OFFLINE
+    private String paymentMode;// ONLINE or OFFLINE
+
+
+    private double fullPaidAmount;
+
+    private double fullAmountInPartialMode;
 
     @NotNull(message = "Partial paid amount is required")
     @PositiveOrZero(message = "Partial paid amount must be zero or positive")
@@ -125,140 +130,51 @@ public class CandidateDto {
     private Double totalPayableAmount;
 
     private double remainingAmount;
+    private double gstAmount;
+
+    private String gstPercent;
 
 
     public CandidateDto() {
     }
 
-    public CandidateDto(String aadharCard, String alternateNumber, String batchId, String contactNumber, String currentAddress, String degree, String dob, String email, String fatherName, String fullName, String gender, String highestDegree, String id, String longMemo, String motherName, String panCard, double partialPaidAmount, String paymentMode, String paymentType, String percentageCgpa, String permanentAddress, double pgPercentageCgpa, String pgSpecializationMajor, String pgUniversityCollegeName, int pgYearOfPassing, String reference, double remainingAmount, List<String> selectedCourse, String specializationMajor, Double totalPayableAmount, String universityCollegeName, int yearOfPassing) {
-        this.aadharCard = aadharCard;
-        this.alternateNumber = alternateNumber;
-        this.batchId = batchId;
-        this.contactNumber = contactNumber;
-        this.currentAddress = currentAddress;
-        this.degree = degree;
-        this.dob = dob;
-        this.email = email;
-        this.fatherName = fatherName;
-        this.fullName = fullName;
-        this.gender = gender;
-        this.highestDegree = highestDegree;
+    public CandidateDto(String id, String fullName, String dob, String gender, String contactNumber, String email, String currentAddress, String permanentAddress, String motherName, String fatherName, String alternateNumber, String aadharCard, String panCard, String reference, String degree, String universityCollegeName, int yearOfPassing, String specializationMajor, String percentageCgpa, String highestDegree, String pgUniversityCollegeName, int pgYearOfPassing, String pgSpecializationMajor, double pgPercentageCgpa, String longMemo, List<String> selectedCourse, String batchId, String paymentType, String paymentMode, double fullPaidAmount, double fullAmountInPartialMode, double partialPaidAmount, Double totalPayableAmount, double remainingAmount, double gstAmount, String gstPercent) {
         this.id = id;
-        this.longMemo = longMemo;
-        this.motherName = motherName;
-        this.panCard = panCard;
-        this.partialPaidAmount = partialPaidAmount;
-        this.paymentMode = paymentMode;
-        this.paymentType = paymentType;
-        this.percentageCgpa = percentageCgpa;
+        this.fullName = fullName;
+        this.dob = dob;
+        this.gender = gender;
+        this.contactNumber = contactNumber;
+        this.email = email;
+        this.currentAddress = currentAddress;
         this.permanentAddress = permanentAddress;
-        this.pgPercentageCgpa = pgPercentageCgpa;
-        this.pgSpecializationMajor = pgSpecializationMajor;
-        this.pgUniversityCollegeName = pgUniversityCollegeName;
-        this.pgYearOfPassing = pgYearOfPassing;
+        this.motherName = motherName;
+        this.fatherName = fatherName;
+        this.alternateNumber = alternateNumber;
+        this.aadharCard = aadharCard;
+        this.panCard = panCard;
         this.reference = reference;
-        this.remainingAmount = remainingAmount;
-        this.selectedCourse = selectedCourse;
-        this.specializationMajor = specializationMajor;
-        this.totalPayableAmount = totalPayableAmount;
+        this.degree = degree;
         this.universityCollegeName = universityCollegeName;
         this.yearOfPassing = yearOfPassing;
-    }
-
-    public @NotBlank(message = "Aadhar card number is required") @Pattern(regexp = "^\\d{12}$", message = "Invalid Aadhar number") String getAadharCard() {
-        return aadharCard;
-    }
-
-    public void setAadharCard(@NotBlank(message = "Aadhar card number is required") @Pattern(regexp = "^\\d{12}$", message = "Invalid Aadhar number") String aadharCard) {
-        this.aadharCard = aadharCard;
-    }
-
-    public @NotBlank(message = "Contact number is required") @Pattern(regexp = "^[6-9]\\d{9}$", message = "Invalid contact number") String getAlternateNumber() {
-        return alternateNumber;
-    }
-
-    public void setAlternateNumber(@NotBlank(message = "Contact number is required") @Pattern(regexp = "^[6-9]\\d{9}$", message = "Invalid contact number") String alternateNumber) {
-        this.alternateNumber = alternateNumber;
-    }
-
-    public String getBatchId() {
-        return batchId;
-    }
-
-    public void setBatchId(String batchId) {
-        this.batchId = batchId;
-    }
-
-    public @NotBlank(message = "Contact number is required") @Pattern(regexp = "^[6-9]\\d{9}$", message = "Invalid contact number") String getContactNumber() {
-        return contactNumber;
-    }
-
-    public void setContactNumber(@NotBlank(message = "Contact number is required") @Pattern(regexp = "^[6-9]\\d{9}$", message = "Invalid contact number") String contactNumber) {
-        this.contactNumber = contactNumber;
-    }
-
-    public @NotBlank(message = "Current address is required") String getCurrentAddress() {
-        return currentAddress;
-    }
-
-    public void setCurrentAddress(@NotBlank(message = "Current address is required") String currentAddress) {
-        this.currentAddress = currentAddress;
-    }
-
-    public @NotBlank(message = "degree is required") String getDegree() {
-        return degree;
-    }
-
-    public void setDegree(@NotBlank(message = "degree is required") String degree) {
-        this.degree = degree;
-    }
-
-    public @NotBlank(message = "Gender is required") String getDob() {
-        return dob;
-    }
-
-    public void setDob(@NotBlank(message = "Gender is required") String dob) {
-        this.dob = dob;
-    }
-
-    public @NotBlank(message = "Email is required") @Email(message = "Invalid email format") String getEmail() {
-        return email;
-    }
-
-    public void setEmail(@NotBlank(message = "Email is required") @Email(message = "Invalid email format") String email) {
-        this.email = email;
-    }
-
-    public @NotBlank(message = "Father's name is required") String getFatherName() {
-        return fatherName;
-    }
-
-    public void setFatherName(@NotBlank(message = "Father's name is required") String fatherName) {
-        this.fatherName = fatherName;
-    }
-
-    public @NotBlank(message = "Full name is required") @Size(min = 3, max = 30, message = "The length of the candidate name should be between 5 and 30") String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(@NotBlank(message = "Full name is required") @Size(min = 3, max = 30, message = "The length of the candidate name should be between 5 and 30") String fullName) {
-        this.fullName = fullName;
-    }
-
-    public @NotBlank(message = "Gender is required") String getGender() {
-        return gender;
-    }
-
-    public void setGender(@NotBlank(message = "Gender is required") String gender) {
-        this.gender = gender;
-    }
-
-    public String getHighestDegree() {
-        return highestDegree;
-    }
-
-    public void setHighestDegree(String highestDegree) {
+        this.specializationMajor = specializationMajor;
+        this.percentageCgpa = percentageCgpa;
         this.highestDegree = highestDegree;
+        this.pgUniversityCollegeName = pgUniversityCollegeName;
+        this.pgYearOfPassing = pgYearOfPassing;
+        this.pgSpecializationMajor = pgSpecializationMajor;
+        this.pgPercentageCgpa = pgPercentageCgpa;
+        this.longMemo = longMemo;
+        this.selectedCourse = selectedCourse;
+        this.batchId = batchId;
+        this.paymentType = paymentType;
+        this.paymentMode = paymentMode;
+        this.fullPaidAmount = fullPaidAmount;
+        this.fullAmountInPartialMode = fullAmountInPartialMode;
+        this.partialPaidAmount = partialPaidAmount;
+        this.totalPayableAmount = totalPayableAmount;
+        this.remainingAmount = remainingAmount;
+        this.gstAmount = gstAmount;
+        this.gstPercent = gstPercent;
     }
 
     public String getId() {
@@ -269,62 +185,52 @@ public class CandidateDto {
         this.id = id;
     }
 
-    public String getLongMemo() {
-        return longMemo;
+    public @NotBlank(message = "Full name is required") @Size(min = 3, max = 30, message = "The length of the candidate name should be between 5 and 30") String getFullName() {
+        return fullName;
     }
 
-    public void setLongMemo(String longMemo) {
-        this.longMemo = longMemo;
+    public void setFullName(@NotBlank(message = "Full name is required") @Size(min = 3, max = 30, message = "The length of the candidate name should be between 5 and 30") String fullName) {
+        this.fullName = fullName;
     }
 
-    public @NotBlank(message = "Mother's name is required") String getMotherName() {
-        return motherName;
+    public @NotBlank(message = "Gender is required") String getDob() {
+        return dob;
     }
 
-    public void setMotherName(@NotBlank(message = "Mother's name is required") String motherName) {
-        this.motherName = motherName;
+    public void setDob(@NotBlank(message = "Gender is required") String dob) {
+        this.dob = dob;
     }
 
-    public @NotBlank(message = "PAN card number is required") @Pattern(regexp = "^[A-Z]{5}[0-9]{4}[A-Z]$", message = "Invalid PAN number") String getPanCard() {
-        return panCard;
+    public @NotBlank(message = "Gender is required") String getGender() {
+        return gender;
     }
 
-    public void setPanCard(@NotBlank(message = "PAN card number is required") @Pattern(regexp = "^[A-Z]{5}[0-9]{4}[A-Z]$", message = "Invalid PAN number") String panCard) {
-        this.panCard = panCard;
+    public void setGender(@NotBlank(message = "Gender is required") String gender) {
+        this.gender = gender;
     }
 
-    @NotNull(message = "Partial paid amount is required")
-    @PositiveOrZero(message = "Partial paid amount must be zero or positive")
-    public double getPartialPaidAmount() {
-        return partialPaidAmount;
+    public @NotBlank(message = "Contact number is required") @Pattern(regexp = "^[6-9]\\d{9}$", message = "Invalid contact number") String getContactNumber() {
+        return contactNumber;
     }
 
-    public void setPartialPaidAmount(@NotNull(message = "Partial paid amount is required") @PositiveOrZero(message = "Partial paid amount must be zero or positive") double partialPaidAmount) {
-        this.partialPaidAmount = partialPaidAmount;
+    public void setContactNumber(@NotBlank(message = "Contact number is required") @Pattern(regexp = "^[6-9]\\d{9}$", message = "Invalid contact number") String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
-    public @NotBlank(message = "Payment mode is required") String getPaymentMode() {
-        return paymentMode;
+    public @NotBlank(message = "Email is required") @Email(message = "Invalid email format") String getEmail() {
+        return email;
     }
 
-    public void setPaymentMode(@NotBlank(message = "Payment mode is required") String paymentMode) {
-        this.paymentMode = paymentMode;
+    public void setEmail(@NotBlank(message = "Email is required") @Email(message = "Invalid email format") String email) {
+        this.email = email;
     }
 
-    public @NotBlank(message = "Payment type is required") String getPaymentType() {
-        return paymentType;
+    public @NotBlank(message = "Current address is required") String getCurrentAddress() {
+        return currentAddress;
     }
 
-    public void setPaymentType(@NotBlank(message = "Payment type is required") String paymentType) {
-        this.paymentType = paymentType;
-    }
-
-    public @NotNull(message = "Percentage/CGPA is required") @DecimalMin(value = "0.0", inclusive = false, message = "Percentage must be greater than 0") String getPercentageCgpa() {
-        return percentageCgpa;
-    }
-
-    public void setPercentageCgpa(@NotNull(message = "Percentage/CGPA is required") @DecimalMin(value = "0.0", inclusive = false, message = "Percentage must be greater than 0") String percentageCgpa) {
-        this.percentageCgpa = percentageCgpa;
+    public void setCurrentAddress(@NotBlank(message = "Current address is required") String currentAddress) {
+        this.currentAddress = currentAddress;
     }
 
     public String getPermanentAddress() {
@@ -335,20 +241,101 @@ public class CandidateDto {
         this.permanentAddress = permanentAddress;
     }
 
-    public double getPgPercentageCgpa() {
-        return pgPercentageCgpa;
+    public @NotBlank(message = "Mother's name is required") String getMotherName() {
+        return motherName;
     }
 
-    public void setPgPercentageCgpa(double pgPercentageCgpa) {
-        this.pgPercentageCgpa = pgPercentageCgpa;
+    public void setMotherName(@NotBlank(message = "Mother's name is required") String motherName) {
+        this.motherName = motherName;
     }
 
-    public String getPgSpecializationMajor() {
-        return pgSpecializationMajor;
+    public @NotBlank(message = "Father's name is required") String getFatherName() {
+        return fatherName;
     }
 
-    public void setPgSpecializationMajor(String pgSpecializationMajor) {
-        this.pgSpecializationMajor = pgSpecializationMajor;
+    public void setFatherName(@NotBlank(message = "Father's name is required") String fatherName) {
+        this.fatherName = fatherName;
+    }
+
+    public @NotBlank(message = "Contact number is required") @Pattern(regexp = "^[6-9]\\d{9}$", message = "Invalid contact number") String getAlternateNumber() {
+        return alternateNumber;
+    }
+
+    public void setAlternateNumber(@NotBlank(message = "Contact number is required") @Pattern(regexp = "^[6-9]\\d{9}$", message = "Invalid contact number") String alternateNumber) {
+        this.alternateNumber = alternateNumber;
+    }
+
+    public @NotBlank(message = "Aadhar card number is required") @Pattern(regexp = "^\\d{12}$", message = "Invalid Aadhar number") String getAadharCard() {
+        return aadharCard;
+    }
+
+    public void setAadharCard(@NotBlank(message = "Aadhar card number is required") @Pattern(regexp = "^\\d{12}$", message = "Invalid Aadhar number") String aadharCard) {
+        this.aadharCard = aadharCard;
+    }
+
+    public @NotBlank(message = "PAN card number is required") @Pattern(regexp = "^[A-Z]{5}[0-9]{4}[A-Z]$", message = "Invalid PAN number") String getPanCard() {
+        return panCard;
+    }
+
+    public void setPanCard(@NotBlank(message = "PAN card number is required") @Pattern(regexp = "^[A-Z]{5}[0-9]{4}[A-Z]$", message = "Invalid PAN number") String panCard) {
+        this.panCard = panCard;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public @NotBlank(message = "degree is required") String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(@NotBlank(message = "degree is required") String degree) {
+        this.degree = degree;
+    }
+
+    public @NotBlank(message = "university/CollegeName is required") String getUniversityCollegeName() {
+        return universityCollegeName;
+    }
+
+    public void setUniversityCollegeName(@NotBlank(message = "university/CollegeName is required") String universityCollegeName) {
+        this.universityCollegeName = universityCollegeName;
+    }
+
+    @NotNull(message = "Year of passing is required")
+    public int getYearOfPassing() {
+        return yearOfPassing;
+    }
+
+    public void setYearOfPassing(@NotNull(message = "Year of passing is required") int yearOfPassing) {
+        this.yearOfPassing = yearOfPassing;
+    }
+
+    public @NotBlank(message = "Specialization is required") String getSpecializationMajor() {
+        return specializationMajor;
+    }
+
+    public void setSpecializationMajor(@NotBlank(message = "Specialization is required") String specializationMajor) {
+        this.specializationMajor = specializationMajor;
+    }
+
+    public @NotNull(message = "Percentage/CGPA is required") @DecimalMin(value = "0.0", inclusive = false, message = "Percentage must be greater than 0") String getPercentageCgpa() {
+        return percentageCgpa;
+    }
+
+    public void setPercentageCgpa(@NotNull(message = "Percentage/CGPA is required") @DecimalMin(value = "0.0", inclusive = false, message = "Percentage must be greater than 0") String percentageCgpa) {
+        this.percentageCgpa = percentageCgpa;
+    }
+
+    public String getHighestDegree() {
+        return highestDegree;
+    }
+
+    public void setHighestDegree(String highestDegree) {
+        this.highestDegree = highestDegree;
     }
 
     public String getPgUniversityCollegeName() {
@@ -367,20 +354,28 @@ public class CandidateDto {
         this.pgYearOfPassing = pgYearOfPassing;
     }
 
-    public String getReference() {
-        return reference;
+    public String getPgSpecializationMajor() {
+        return pgSpecializationMajor;
     }
 
-    public void setReference(String reference) {
-        this.reference = reference;
+    public void setPgSpecializationMajor(String pgSpecializationMajor) {
+        this.pgSpecializationMajor = pgSpecializationMajor;
     }
 
-    public double getRemainingAmount() {
-        return remainingAmount;
+    public double getPgPercentageCgpa() {
+        return pgPercentageCgpa;
     }
 
-    public void setRemainingAmount(double remainingAmount) {
-        this.remainingAmount = remainingAmount;
+    public void setPgPercentageCgpa(double pgPercentageCgpa) {
+        this.pgPercentageCgpa = pgPercentageCgpa;
+    }
+
+    public String getLongMemo() {
+        return longMemo;
+    }
+
+    public void setLongMemo(String longMemo) {
+        this.longMemo = longMemo;
     }
 
     public @NotNull(message = "Selected courses must not be null") @Size(min = 1, message = "At least one course must be selected") List<String> getSelectedCourse() {
@@ -391,12 +386,54 @@ public class CandidateDto {
         this.selectedCourse = selectedCourse;
     }
 
-    public @NotBlank(message = "Specialization is required") String getSpecializationMajor() {
-        return specializationMajor;
+    public String getBatchId() {
+        return batchId;
     }
 
-    public void setSpecializationMajor(@NotBlank(message = "Specialization is required") String specializationMajor) {
-        this.specializationMajor = specializationMajor;
+    public void setBatchId(String batchId) {
+        this.batchId = batchId;
+    }
+
+    public @NotBlank(message = "Payment type is required") String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(@NotBlank(message = "Payment type is required") String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public @NotBlank(message = "Payment mode is required") String getPaymentMode() {
+        return paymentMode;
+    }
+
+    public void setPaymentMode(@NotBlank(message = "Payment mode is required") String paymentMode) {
+        this.paymentMode = paymentMode;
+    }
+
+    public double getFullPaidAmount() {
+        return fullPaidAmount;
+    }
+
+    public void setFullPaidAmount(double fullPaidAmount) {
+        this.fullPaidAmount = fullPaidAmount;
+    }
+
+    public double getFullAmountInPartialMode() {
+        return fullAmountInPartialMode;
+    }
+
+    public void setFullAmountInPartialMode(double fullAmountInPartialMode) {
+        this.fullAmountInPartialMode = fullAmountInPartialMode;
+    }
+
+    @NotNull(message = "Partial paid amount is required")
+    @PositiveOrZero(message = "Partial paid amount must be zero or positive")
+    public double getPartialPaidAmount() {
+        return partialPaidAmount;
+    }
+
+    public void setPartialPaidAmount(@NotNull(message = "Partial paid amount is required") @PositiveOrZero(message = "Partial paid amount must be zero or positive") double partialPaidAmount) {
+        this.partialPaidAmount = partialPaidAmount;
     }
 
     public @NotNull(message = "Total payable amount is required") @Positive(message = "Total payable amount must be greater than zero") Double getTotalPayableAmount() {
@@ -407,20 +444,27 @@ public class CandidateDto {
         this.totalPayableAmount = totalPayableAmount;
     }
 
-    public @NotBlank(message = "university/CollegeName is required") String getUniversityCollegeName() {
-        return universityCollegeName;
+    public double getRemainingAmount() {
+        return remainingAmount;
     }
 
-    public void setUniversityCollegeName(@NotBlank(message = "university/CollegeName is required") String universityCollegeName) {
-        this.universityCollegeName = universityCollegeName;
+    public void setRemainingAmount(double remainingAmount) {
+        this.remainingAmount = remainingAmount;
     }
 
-    @NotNull(message = "Year of passing is required")
-    public int getYearOfPassing() {
-        return yearOfPassing;
+    public double getGstAmount() {
+        return gstAmount;
     }
 
-    public void setYearOfPassing(@NotNull(message = "Year of passing is required") int yearOfPassing) {
-        this.yearOfPassing = yearOfPassing;
+    public void setGstAmount(double gstAmount) {
+        this.gstAmount = gstAmount;
+    }
+
+    public String getGstPercent() {
+        return gstPercent;
+    }
+
+    public void setGstPercent(String gstPercent) {
+        this.gstPercent = gstPercent;
     }
 }
