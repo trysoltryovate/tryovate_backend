@@ -25,11 +25,11 @@ public class CandidateServiceImpl implements CandidateService {
     @Override
     public void saveCandidateDto(CandidateDto candidateDto) {
 
-            Optional<Candidate> existingCandidate = candidateRepo.findByEmail(candidateDto.getEmail());
-            if(existingCandidate.isPresent()) {
-                throw new CandidateAlreadyExistsException("email already exist "
-                        +candidateDto.getEmail());
-            }
+        Optional<Candidate> existingCandidate = candidateRepo.findByEmail(candidateDto.getEmail());
+        if(existingCandidate.isPresent()) {
+            throw new CandidateAlreadyExistsException("email already exist "
+                    +candidateDto.getEmail());
+        }
 
 
         Candidate candidate = CandidateMapper.mapToCandidate(candidateDto,new Candidate());
@@ -95,6 +95,10 @@ public class CandidateServiceImpl implements CandidateService {
         candidate.setPgSpecializationMajor(candidateDto.getPgSpecializationMajor());
         candidate.setPgPercentageCgpa(candidateDto.getPgPercentageCgpa());
         candidate.setLongMemo(candidateDto.getLongMemo());
+        candidate.setFullPaidAmount(candidateDto.getFullPaidAmount());
+        candidate.setFullAmountInPartialMode(candidateDto.getFullAmountInPartialMode());
+        candidate.setGstAmount(candidateDto.getGstAmount());
+        candidate.setGstPercent(candidateDto.getGstPercent());
         if (candidateDto.getSelectedCourse() != null && !candidateDto.getSelectedCourse().isEmpty()) {
             String courses = String.join(",", candidateDto.getSelectedCourse());
             candidate.setSelectedCourse(courses);
@@ -133,4 +137,4 @@ public class CandidateServiceImpl implements CandidateService {
                 .map(CandidateMapper::mapToCandidateDto)
                 .collect(Collectors.toList());
     }
-    }
+}

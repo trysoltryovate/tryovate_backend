@@ -40,15 +40,19 @@ public class CandidateMapper {
         if (candidate.getSelectedCourse() != null && !candidate.getSelectedCourse().isEmpty()) {
             candidateDto.setSelectedCourse(Arrays.asList(candidate.getSelectedCourse().split(",")));
         }
-    else {
-        candidateDto.setSelectedCourse(new ArrayList<>());
-    }
+        else {
+            candidateDto.setSelectedCourse(new ArrayList<>());
+        }
         candidateDto.setBatchId(candidate.getBatchId());
         candidateDto.setPaymentType(candidate.getPaymentType());
         candidateDto.setPaymentMode(candidate.getPaymentMode());
         candidateDto.setPartialPaidAmount(candidate.getPartialPaidAmount());
         candidateDto.setTotalPayableAmount(candidate.getTotalPayableAmount());
         candidateDto.setRemainingAmount(candidate.getRemainingAmount());
+        candidateDto.setFullPaidAmount(candidate.getFullPaidAmount());
+        candidateDto.setFullAmountInPartialMode(candidate.getFullAmountInPartialMode());
+        candidateDto.setGstAmount(candidate.getGstAmount());
+        candidateDto.setGstPercent(candidate.getGstPercent());
 
         return candidateDto;
     }
@@ -84,15 +88,19 @@ public class CandidateMapper {
         if (candidateDto.getSelectedCourse() != null && !candidateDto.getSelectedCourse().isEmpty()) {
             candidate.setSelectedCourse(String.join(",", candidateDto.getSelectedCourse()));
         }
-    else {
-        candidate.setSelectedCourse("");
-    }
+        else {
+            candidate.setSelectedCourse("");
+        }
         candidate.setBatchId(candidateDto.getBatchId());
         candidate.setPaymentType(candidateDto.getPaymentType());
         candidate.setPaymentMode(candidateDto.getPaymentMode());
         candidate.setPartialPaidAmount(candidateDto.getPartialPaidAmount());
         candidate.setTotalPayableAmount(candidateDto.getTotalPayableAmount());
         candidate.setRemainingAmount(candidateDto.getRemainingAmount());
+        candidate.setFullPaidAmount(candidateDto.getFullPaidAmount());
+        candidate.setFullAmountInPartialMode(candidateDto.getFullAmountInPartialMode());
+        candidate.setGstAmount(candidateDto.getGstAmount());
+        candidate.setGstPercent(candidateDto.getGstPercent());
 
         return candidate;
 
